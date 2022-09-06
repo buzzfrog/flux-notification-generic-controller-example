@@ -1,3 +1,7 @@
+# What do this example do?
+This example setups a flux notification controller example with a generic provider. 
+This provider subscribe to alerts from a flux source controllers, GitRepository, and Kustomize controller.
+
 # Requirements
 * kubectl cli
 * kind cli
