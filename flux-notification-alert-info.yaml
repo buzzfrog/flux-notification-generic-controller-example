@@ -1,10 +1,10 @@
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Alert
 metadata:
-  name: notification-sink-alert
+  name: notification-sink-alert-info
   namespace: default
 spec:
-  summary: "notification-sink test cluster"
+  summary: "notification-sink-alert-info"
   providerRef:
     name: notification-sink-provider
   eventSeverity: info
