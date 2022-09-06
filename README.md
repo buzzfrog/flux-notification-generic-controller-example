@@ -46,4 +46,5 @@ app.Run();
 
 # Resources
 https://fluxcd.io/flux/guides/notifications/
+
 https://fluxcd.io/flux/components/notification/
