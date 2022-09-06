@@ -1,0 +1,46 @@
+# https://docs.microsoft.com/en-us/dotnet/architecture/containerized-lifecycle/design-develop-containerized-apps/build-aspnet-core-applications-linux-containers-aks-kubernetes
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-sink-dep
+  labels:
+    app: notification-sink
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: notification-sink-service
+  template:
+    metadata:
+      labels:
+        app: notification-sink
+        service: notification-sink-service
+    spec:
+      containers:
+      - name: notification-sink-container
+        image: buzzfrog/notification-sink:0.2
+        ports:
+          - containerPort: 80
+            protocol: TCP
+        env:
+          - name: ASPNETCORE_URLS
+            value: http://+:80
+        resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-sink-service
+  labels:
+    app: notification-sink
+    service: notification-sink-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    service: notification-sink-service

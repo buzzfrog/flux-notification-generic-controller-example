@@ -1,0 +1,17 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: notification-sink-alert
+  namespace: default
+spec:
+  summary: "notification-sink test cluster"
+  providerRef:
+    name: notification-sink-provider
+  eventSeverity: info
+  eventSources:
+    - kind: GitRepository
+      namespace: default
+      name: '*'
+    - kind: Kustomization
+      namespace: default
+      name: '*'
